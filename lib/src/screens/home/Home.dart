@@ -28,7 +28,10 @@ class _HomeState extends State<Home> {
           children: [
             Text("Digite o texto que você deseja criptografar", style: TextStyle(fontSize: 24),),
             TextField(
-              
+              decoration: InputDecoration(
+                icon: Icon(Icons.arrow_forward),
+                label: Text("Seu texto")
+              ),
               onChanged: (value) {
                 setState(() {
                   stringToCrypto = value;
@@ -37,6 +40,7 @@ class _HomeState extends State<Home> {
             ),
             DropdownButton(
               value:  cryptoType,
+              focusColor: Colors.amber,
               items: [
                 DropdownMenuItem(child: Text("Cesar"), enabled: true, value: "Cesar",),
                 DropdownMenuItem(child: Text("Morse"), enabled: true, value: "Morse"),
@@ -49,11 +53,11 @@ class _HomeState extends State<Home> {
               });
             }),
             Container(
-              color: Colors.red,
+              color: Colors.black,
               height: 200,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Text(cryptedValue),
+                child: Text(cryptedValue, style: TextStyle(fontSize: 24, color: Colors.white),),
               ),
             ),
             FloatingActionButton(
@@ -61,10 +65,19 @@ class _HomeState extends State<Home> {
               onPressed: () {
                 setState(() {
                   CryptoController crypto = CryptoController();
-
-                  cryptedValue = crypto.AbcToCesar(stringToCrypto);
+                  switch(cryptoType){
+                    case "Cesar":
+                      cryptedValue = crypto.AbcToCesar(stringToCrypto);
+                      break;
+                    case "Morse":
+                      cryptedValue = crypto.AbcToMorse(stringToCrypto);
+                      break;
+                    case "Well":
+                      cryptedValue = crypto.AbcToWell(stringToCrypto);
+                  }
                 });
               },
+              child: Text("Converter"),
             )
 
           ],
