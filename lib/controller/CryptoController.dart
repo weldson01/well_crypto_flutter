@@ -3,6 +3,7 @@ class CryptoController {
 
   String AbcToCesar(String Abc) {
     String aux = "";
+    Abc = Abc.trim();
     for (int i = 0; i < Abc.length; i++) {
       if(CryptoTables.AbcTable.contains(Abc[i].toUpperCase())){
         if (Abc[i].toUpperCase() != CryptoTables.AbcTable.last) {
@@ -21,18 +22,26 @@ class CryptoController {
 
   String AbcToMorse(String Abc) {
     String aux = "";
+    Abc = Abc.trim();
     for (int i = 0; i < Abc.length; i++) {
-      aux += CryptoTables.Morse[Abc[i].toUpperCase()].toString();
-      print(aux);
+      if(CryptoTables.Morse.containsKey(Abc[i].toUpperCase())){
+        aux += CryptoTables.Morse[Abc[i].toUpperCase()].toString();
+      }else{
+        aux += Abc[i];
+      }
     }
     return aux;
   }
 
   String AbcToWell(String Abc) {
     String aux = "";
+    Abc = Abc.trim();
     for (int i = 0; i < Abc.length; i++) {
-      aux += CryptoTables.WellCrypto[Abc[i].toUpperCase()].toString();
-      print(aux);
+      if(CryptoTables.WellCrypto.containsKey(Abc[i].toUpperCase())){
+        aux += CryptoTables.WellCrypto[Abc[i].toUpperCase()].toString();
+      }else{
+        aux += Abc[i];
+      }
     }
     return aux;
   }

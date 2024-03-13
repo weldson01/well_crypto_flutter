@@ -29,8 +29,8 @@ class _HomeState extends State<Home> {
             Text("Digite o texto que você deseja criptografar", style: TextStyle(fontSize: 24),),
             TextField(
               decoration: InputDecoration(
-                icon: Icon(Icons.arrow_forward),
-                label: Text("Seu texto")
+                label: Text("Seu texto"),
+                counter: Text(stringToCrypto.length.toString())
               ),
               onChanged: (value) {
                 setState(() {
@@ -38,6 +38,7 @@ class _HomeState extends State<Home> {
                 });
               },
             ),
+            SizedBox(height: 20,),
             DropdownButton(
               value:  cryptoType,
               focusColor: Colors.amber,
@@ -52,12 +53,13 @@ class _HomeState extends State<Home> {
                 cryptoType = value.toString();
               });
             }),
+            SizedBox(height: 20,),
             Container(
               color: Colors.black,
               height: 200,
               child: Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Text(cryptedValue, style: TextStyle(fontSize: 24, color: Colors.white),),
+                child: Text(cryptedValue, style: TextStyle(fontSize: 24, color: Colors.green),),
               ),
             ),
             FloatingActionButton(
